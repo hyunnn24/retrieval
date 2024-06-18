@@ -12,7 +12,7 @@ if api:
 import time
 
 def run_and_wait(client, assistant, thread):
-  run = client.beta.threads.runs.create(
+  run = client.beta.threads.runs.retrieve(
     thread_id=thread.id,
     assistant_id=assistant.id
   )
