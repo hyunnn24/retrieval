@@ -1,0 +1,4 @@
+openai
+requirements
+streamlit
+bs4
