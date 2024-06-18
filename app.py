@@ -69,9 +69,9 @@ if ask:
             }
         ]
     )
-    thread
+    
 
-run_and_wait(client, assistant, thread)
+    run_and_wait(client, assistant, thread)
 if run_check.status in ['completed']:
     thread_messages = client.beta.threads.messages.list(thread.id)
     for msg in thread_messages.data:
