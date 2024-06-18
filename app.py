@@ -44,4 +44,35 @@ download_and_save(url, filename)
 with open(filename) as fi:
   text = fi.read()
 
-st.write(text)
+#st.write(text)
+
+my_file = client.files.create(
+    file = open(filename,'rb'),
+    purpose='assistants'
+)
+
+assistant = client.beta.assistants.create(
+  instructions="당신은 롤 바텀픽 전문가입니다. 첨부 파일의 정보를 이용해 응답하세요.",
+  model="gpt-4-turbo-preview",
+  tools=[{"type": "retrieval"}],
+  file_ids=[my_file.id]
+)
+
+ask=st.text_input("상대픽을 입력하세요:")
+if ask:
+    thread = client.beta.threads.create(
+    messages=[
+            {
+            "role": "user",
+            "content": ask,
+            #"file_ids": [my_file.id]
+            }
+        ]
+    )
+    thread
+
+run_and_wait(client, assistant, thread)
+if run_check.status in ['completed']:
+    thread_messages = client.beta.threads.messages.list(thread.id)
+    for msg in thread_messages.data:
+        st.write(f"{msg.role}: {msg.content[0].text.value}")
