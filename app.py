@@ -1,5 +1,5 @@
 import openai 
-import streamlit
+import streamlit as st
 from bs4 import BeautifulSoup
 import requests
 from openai import OpenAI
