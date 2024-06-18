@@ -6,7 +6,7 @@ from openai import OpenAI
 
 api = st.text_input('Enter your OpenAI API key:', type='password')
 
-if api_key:
+if api:
     client = OpenAI(api_key=api)
 
 import time
