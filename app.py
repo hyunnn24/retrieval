@@ -56,9 +56,9 @@ try:
         tools=[{"type": "retrieval"}],
         model="gpt-4o",
     )
-except openai.error.OpenAIError as e:
-    st.error(f"An error occurred: {e}")
-    st.stop()
+except:
+    st.error("An error occurred")
+
 
 ask = st.text_input("상대픽을 입력하세요:")
 if ask:
@@ -76,5 +76,5 @@ if ask:
             thread_messages = openai.Thread.messages.list(thread.id)
             for msg in thread_messages.data:
                 st.write(f"{msg.role}: {msg.content[0].text.value}")
-    except openai.error.OpenAIError as e:
-        st.error(f"An error occurred: {e}")
+    except:
+        st.error("An error occurred")
