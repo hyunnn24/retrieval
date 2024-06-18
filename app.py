@@ -55,7 +55,7 @@ try:
         instructions="You're a LOL bottom pick expert. Look at the file and answer.",
         tools=[{"type": "retrieval"}],
         model="gpt-4o",
-    )
+        )
 except:
     st.error("An error occurred")
 
