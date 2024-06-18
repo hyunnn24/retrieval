@@ -12,7 +12,7 @@ if api:
 import time
 
 def run_and_wait(client, assistant, thread):
-  run = client.beta.threads.runs.retrieve(
+  run = client.beta.threads.runs.create(
     thread_id=thread.id,
     assistant_id=assistant.id
   )
@@ -52,10 +52,10 @@ my_file = client.files.create(
 )
 
 assistant = client.beta.assistants.create(
-  instructions="당신은 롤 바텀픽 전문가입니다. 첨부 파일의 정보를 이용해 응답하세요.",
-  model="gpt-4-turbo-preview",
+  name="Bottom Pick Expert",
+  instructions="You're a LOL bottom pick expert. Look at the file and answer.",
   tools=[{"type": "retrieval"}],
-  file_ids=[my_file.id]
+  model="gpt-4o",
 )
 
 ask=st.text_input("상대픽을 입력하세요:")
@@ -69,7 +69,7 @@ if ask:
             }
         ]
     )
-    
+    thread
 
     run_and_wait(client, assistant, thread)
 if run_check.status in ['completed']:
