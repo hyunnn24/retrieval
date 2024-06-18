@@ -35,7 +35,8 @@ def download_and_save(url, filename):
   with open(filename,'w') as fo:
     fo.write(text)
 
-url = "https://github.com/hyunnn24/retrieval/blob/main/data.txt"
+github_url = "https://github.com/hyunnn24/retrieval/blob/main/data.txt"
+url = github_url.replace("/blob/", "/raw/")
 filename = 'data.txt'
 
 download_and_save(url, filename)
