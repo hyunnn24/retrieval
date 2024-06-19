@@ -63,10 +63,12 @@ if api:
         }
       ]
     )
+    thread
     run = client.beta.threads.runs.create_and_poll(
         thread_id=thread.id,
         assistant_id=assistant.id
     )
+    run
     thread_messages = client.beta.threads.messages.list(thread.id, run_id=run.id)
     thread_messages
     for msg in thread_messages.data:
