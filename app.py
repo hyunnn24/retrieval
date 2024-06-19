@@ -33,8 +33,8 @@ if api:
 if api:
   assistant = client.beta.assistants.create(
     name="LOL Pick Assistant",
-    instructions="문서를 참조하여 (챔피언1의 카운터는 ~입니다 추천조합은~입니다 그 이유는~입니다 챔피언1의 카운터는 ~입니다 추천조합은~입니다 그 이유는~입니다)의 형식만으로 답변하고 카운터와 조합은 문서에서 이유는 직접 생각해봐 한국어로 답해주세요",
-    model="gpt-3.5-turbo",
+    instructions="문서를 참조하여 (챔피언1의 카운터는 ~입니다 추천조합은~입니다 그 이유는~입니다 챔피언1의 카운터는 ~입니다 추천조합은~입니다 그 이유는~입니다)의 형식만으로 답변하고 카운터와 조합은 문서에서 이유는 직접 생각해서 알려줘 한국어로 답해",
+    model="gpt-4o",
     tools=[{"type": "file_search"}],
     tool_resources={
         "file_search":{
