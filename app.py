@@ -33,7 +33,7 @@ vector_store = client.beta.vector_stores.create(name="Bottom pick")
 if api:
   assistant = client.beta.assistants.create(
     name="LOL Pick Assistant",
-    instructions="문서를 참조하여 주어지는 모든 챔피언들의 카운터와 추천서폿을 각각 알려주세요 한국어로 답해주세요",
+    instructions="문서를 참조하여 (챔피언1의 카운터는 ~입니다 추천조합은~입니다 그 이유는~입니다 챔피언1의 카운터는 ~입니다 추천조합은~입니다 그 이유는~입니다)의 형식만으로 답변하고 카운터와 조합은 문서에서 이유는 직접 생각해봐 한국어로 답해주세요",
     model="gpt-3.5-turbo",
     tools=[{"type": "file_search"}],
     tool_resources={
