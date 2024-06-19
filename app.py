@@ -27,7 +27,7 @@ with open(filename) as fi:
   text = fi.read()
 
 # st.write(text) TEST
-
+if api:
 vector_store = client.beta.vector_stores.create(name="Bottom pick")
 
 if api:
