@@ -33,7 +33,7 @@ vector_store = client.beta.vector_stores.create(name="Bottom pick")
 if api:
   assistant = client.beta.assistants.create(
     name="LOL Pick Assistant",
-    instructions="You are an expert of league of legend bottonline pick.answer with korean",
+    instructions="문서를 참조하여 주어지는 챔피언들의 카운터와 추천서폿을 알려주세요",
     model="gpt-3.5-turbo",
     tools=[{"type": "file_search"}],
     tool_resources={
