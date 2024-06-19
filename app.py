@@ -27,6 +27,9 @@ with open(filename) as fi:
   text = fi.read()
 
 # st.write(text) TEST
+
+vector_store = client.beta.vector_stores.create(name="Bottom pick")
+
 if api:
   assistant = client.beta.assistants.create(
     name="LOL Pick Assistant",
@@ -40,9 +43,9 @@ if api:
     }  
   )
 
-  vector_store = client.beta.vector_stores.create(name="BUSAN")
 
-  file_paths = [filename1, filename2]
+
+  file_paths = [filename]
 
   file_streams = [open(path, "rb") for path in file_paths]
 
