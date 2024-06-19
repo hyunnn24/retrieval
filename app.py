@@ -28,7 +28,7 @@ with open(filename) as fi:
 
 # st.write(text) TEST
 if api:
-vector_store = client.beta.vector_stores.create(name="Bottom pick")
+  vector_store = client.beta.vector_stores.create(name="Bottom pick")
 
 if api:
   assistant = client.beta.assistants.create(
