@@ -68,6 +68,8 @@ if api:
         assistant_id=assistant.id
     )
     thread_messages = client.beta.threads.messages.list(thread.id, run_id=run.id)
+    thread_messages
     for msg in thread_messages.data:
       st.write(f"{msg.role}: {msg.content[0].text.value}")
+      print(f"{msg.role}: {msg.content[0].text.value}")
 
