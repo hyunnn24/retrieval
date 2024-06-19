@@ -17,7 +17,7 @@ def run_and_wait(client, assistant, thread):
     assistant_id=assistant.id
   )
   while True:
-    run_check = client.beta.threads.runs.retrieve(
+    run_check = client.beta.threads.runs.stream(
       thread_id=thread.id,
       run_id=run.id
     )
@@ -52,11 +52,12 @@ my_file = client.files.create(
 )
 
 assistant = client.beta.assistants.create(
-  name="Bottom Pick Expert",
+  name="Financial Analyst Assistant",
   instructions="You're a LOL bottom pick expert. Look at the file and answer.",
-  tools=[{"type": "retrieval"}],
   model="gpt-4o",
+  tools=[{"type": "file_search"}],
 )
+
 
 ask=st.text_input("상대픽을 입력하세요:")
 if ask:
