@@ -63,14 +63,14 @@ if api:
         }
       ]
     )
-    thread
+    #thread
     run = client.beta.threads.runs.create_and_poll(
         thread_id=thread.id,
         assistant_id=assistant.id
     )
-    run
+    #run
     thread_messages = client.beta.threads.messages.list(thread.id, run_id=run.id)
-    thread_messages
+    #thread_messages
     for msg in thread_messages.data:
       st.write(f"{msg.role}: {msg.content[0].text.value}")
       print(f"{msg.role}: {msg.content[0].text.value}")
