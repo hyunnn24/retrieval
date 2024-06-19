@@ -34,7 +34,7 @@ if api:
   assistant = client.beta.assistants.create(
     name="LOL Pick Assistant",
     instructions="You are an expert of league of legend bottonline pick.",
-    model="gpt-4o",
+    model="gpt-3.5-turbo",
     tools=[{"type": "file_search"}],
     tool_resources={
         "file_search":{
