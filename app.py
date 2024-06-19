@@ -45,18 +45,18 @@ with open(filename) as fi:
   text = fi.read()
 
 #st.write(text)
+if api:
+  my_file = client.files.create(
+      file = open(filename,'rb'),
+      purpose='assistants'
+  )
 
-my_file = client.files.create(
-    file = open(filename,'rb'),
-    purpose='assistants'
-)
-
-assistant = client.beta.assistants.create(
-  name="Financial Analyst Assistant",
-  instructions="You're a LOL bottom pick expert. Look at the file and answer.",
-  model="gpt-4o",
-  tools=[{"type": "file_search"}],
-)
+  assistant = client.beta.assistants.create(
+    name="Financial Analyst Assistant",
+    instructions="You're a LOL bottom pick expert. Look at the file and answer.",
+    model="gpt-4o",
+    tools=[{"type": "file_search"}],
+  )
 
 
 ask=st.text_input("상대픽을 입력하세요:")
