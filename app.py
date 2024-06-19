@@ -8,7 +8,7 @@ api = st.text_input('Enter your OpenAI API key:', type='password')
 
 if api:
     client = OpenAI(api_key=api)
-
+userinput= st.text_input('픽입력:')
 
 def download_and_save(url, filename):
   r = requests.get(url)
@@ -26,12 +26,45 @@ download_and_save(url, filename)
 with open(filename) as fi:
   text = fi.read()
 
-st.write(text)
+# st.write(text) TEST
 if api:
   assistant = client.beta.assistants.create(
     name="LOL Pick Assistant",
     instructions="You are an expert of league of legend bottonline pick.",
     model="gpt-4o",
     tools=[{"type": "file_search"}],
+    tool_resources={
+        "file_search":{
+            "vector_store_ids": [vector_store.id]
+        }
+    }  
   )
+
+  vector_store = client.beta.vector_stores.create(name="BUSAN")
+
+  file_paths = [filename1, filename2]
+
+  file_streams = [open(path, "rb") for path in file_paths]
+
+  file_batch = client.beta.vector_stores.file_batches.upload_and_poll(
+  vector_store_id=vector_store.id,
+  files=file_streams
+  )
+  if userinput:
+    thread = client.beta.threads.create(
+      messages=[
+        {
+          "role": "user",
+          "content": userinput,
+          #"attachments": [{"file_id": message_file.id, "tools":[{"type":"file_search"}]]
+        }
+      ]
+    )
+    run = client.beta.threads.runs.create_and_poll(
+        thread_id=thread.id,
+        assistant_id=assistant.id
+    )
+    thread_messages = client.beta.threads.messages.list(thread.id, run_id=run.id)
+    for msg in thread_messages.data:
+      st.write(f"{msg.role}: {msg.content[0].text.value}")
 
